@@ -21,4 +21,12 @@ export class HomePage {
     console.log('ionViewDidLoad HomePage');
   }
 
+  goToUsersPage(){
+    this.navCtrl.push('UsersPage');
+  }
+
+  goToHeroesPage(){
+    this.navCtrl.push('HeroesPage');
+  }
+
 }
