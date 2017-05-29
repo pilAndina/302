@@ -20,5 +20,9 @@ export class TutorialPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad TutorialPage');
   }
+  
+  goToLoginPage(){
+    this.navCtrl.push('LoginPage');
+  }
 
 }
