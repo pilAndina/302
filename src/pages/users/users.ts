@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the UsersPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+import { UsersProvider } from '../../providers/users/users';
+
 @IonicPage()
 @Component({
   selector: 'page-users',
@@ -14,11 +10,34 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class UsersPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  users: any[] = [];
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private usersProvider: UsersProvider
+  ) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad UsersPage');
+    this.usersProvider.getUsers()
+    .then(data=>{
+      this.users = data.results;
+    })
+  }
+
+  goToUserDetail( clickedUser ){
+    this.navCtrl.push('UserPage',{
+      user: clickedUser
+    });
+    // this.navCtrl.push('UserPage',{
+    //   name: 'nicolas',
+    //   age: 1212,
+    //   isSingle: false,
+    //   heroe: {
+    //     name: 'super nico'
+    //   },
+    //   list: [1,2,4,5,3]
+    // });
   }
 
 }

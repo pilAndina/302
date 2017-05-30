@@ -14,5 +14,24 @@
 
 
 <ion-content padding>
-
+  <ion-card>
+    <img [src]="user.picture.large" alt="avatar">
+    <ion-card-header>
+      {{ user.name.title }} {{ user.name.last }}
+    </ion-card-header>
+    <ion-list>
+      <ion-item>
+        <ion-icon name="call" item-left></ion-icon>
+        {{ user.phone }}
+      </ion-item>
+      <ion-item>
+        <ion-icon name="at" item-left></ion-icon>
+        {{ user.email }}
+      </ion-item>
+      <ion-item>
+        <ion-icon [name]="user.gender" item-left></ion-icon>
+        {{ user.gender }}
+      </ion-item>
+    </ion-list>
+  </ion-card>
 </ion-content>

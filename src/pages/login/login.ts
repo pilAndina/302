@@ -22,7 +22,7 @@ export class LoginPage {
   }
 
   goToHomePage(){
-    this.navCtrl.push('HomepPage');
+    this.navCtrl.setRoot('HomePage');
   }
 
 }
