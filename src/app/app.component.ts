@@ -9,7 +9,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 export class MyApp {
 
   @ViewChild(Nav) navMaster: Nav;
-  rootPage:any = 'TutorialPage';
+  rootPage: any = 'TutorialPage';
 
   constructor(
     platform: Platform,
@@ -23,6 +23,7 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
       this.menuCtrl.enable(false, 'menuAdmin');
+      this.menuCtrl.enable(false, 'menuSales');
     });
   }
 

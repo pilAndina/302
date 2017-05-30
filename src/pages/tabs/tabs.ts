@@ -17,6 +17,7 @@ export class TabsPage {
 
   ionViewDidLoad() {
     this.menuCtrl.enable(true, 'menuAdmin');
+    this.menuCtrl.enable(true, 'menuSales');
   }
 
 }

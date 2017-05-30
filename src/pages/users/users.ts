@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 
 import { UsersProvider } from '../../providers/users/users';
 
@@ -15,14 +15,33 @@ export class UsersPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private usersProvider: UsersProvider
+    private usersProvider: UsersProvider,
+    private menuCtrl: MenuController
   ) {}
 
   ionViewDidLoad() {
+    console.log('ionViewDidLoad Users');
     this.usersProvider.getUsers()
     .then(data=>{
       this.users = data.results;
     })
+  }
+
+  ionViewWillEnter(){
+    console.log('ionViewWillEnter');
+  }
+
+  ionViewDidEnter(){
+    this.menuCtrl.enable(false, 'menuAdmin');
+    this.menuCtrl.enable(true,  'menuSales');
+  }
+
+  ionViewWillLeave(){
+    console.log('ionViewWillLeave');
+  }
+
+  ionViewDidLeave(){
+    console.log('ionViewDidLeave');
   }
 
   goToUserDetail( clickedUser ){

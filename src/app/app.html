@@ -1,10 +1,30 @@
-<ion-menu id="menuAdmin" [content]="myContent">
+<ion-menu side="left" id="menuAdmin" [content]="myContent">
+  <ion-header>
+    <ion-toolbar color="danger">
+      <ion-title>Menu Admin</ion-title>
+    </ion-toolbar>
+  </ion-header>
   <ion-content>
     <ion-list>
       <button ion-item menuClose (click)="goToTabsPage()">Home</button>
       <button ion-item menuClose (click)="goToUsersPage()">Users</button>
       <button ion-item>Tasks</button>
       <button ion-item>Undone</button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-menu side="left" id="menuSales" [content]="myContent">
+   <ion-header>
+     <ion-toolbar color="secondary">
+      <ion-title>Menu Sales</ion-title>
+     </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <button ion-item>Opcion 1</button>
+      <button ion-item>Opcion 2</button>
+      <button ion-item>Opcion 3</button>
     </ion-list>
   </ion-content>
 </ion-menu>
