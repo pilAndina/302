@@ -1,1 +1,12 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu id="menuAdmin" [content]="myContent">
+  <ion-content>
+    <ion-list>
+      <button ion-item menuClose (click)="goToTabsPage()">Home</button>
+      <button ion-item menuClose (click)="goToUsersPage()">Users</button>
+      <button ion-item>Tasks</button>
+      <button ion-item>Undone</button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav #myContent [root]="rootPage"></ion-nav>
