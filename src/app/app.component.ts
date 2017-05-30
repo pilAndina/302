@@ -34,5 +34,15 @@ export class MyApp {
   goToTabsPage(){
     this.navMaster.setRoot('TabsPage');
   }
+
+  goToHomePage(){
+    this.navMaster.setRoot('HomePage');
+  }
+
+  logout(){
+    //clear session
+    this.navMaster.setRoot('TutorialPage');
+    this.menuCtrl.enable(false, 'menuSales');
+  }
 }
 

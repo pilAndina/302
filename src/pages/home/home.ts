@@ -20,8 +20,7 @@ export class HomePage {
   }
 
   ionViewDidEnter(){
-    this.menuCtrl.enable(false, 'menuSales');
-    this.menuCtrl.enable(true,  'menuAdmin');
+    this.menuCtrl.enable(true, 'menuSales');
   }
 
   goToUsersPage(){

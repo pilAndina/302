@@ -22,7 +22,7 @@ export class LoginPage {
   }
 
   goToHomePage(){
-    this.navCtrl.setRoot('TabsPage');
+    this.navCtrl.setRoot('HomePage');
   }
 
 }

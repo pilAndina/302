@@ -32,8 +32,8 @@ export class UsersPage {
   }
 
   ionViewDidEnter(){
-    this.menuCtrl.enable(false, 'menuAdmin');
-    this.menuCtrl.enable(true,  'menuSales');
+    // this.menuCtrl.enable(false, 'menuAdmin');
+    // this.menuCtrl.enable(true,  'menuSales');
   }
 
   ionViewWillLeave(){

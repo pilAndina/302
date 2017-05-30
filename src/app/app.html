@@ -22,9 +22,10 @@
   </ion-header>
   <ion-content>
     <ion-list>
-      <button ion-item>Opcion 1</button>
-      <button ion-item>Opcion 2</button>
-      <button ion-item>Opcion 3</button>
+      <button ion-item menuClose (click)="goToHomePage()">Home</button>
+      <button ion-item menuClose (click)="goToUsersPage()">Users</button>
+      <button ion-item menuClose (click)="goToTabsPage()">Tasks</button>
+      <button ion-item menuClose (click)="logout()">Salir</button>
     </ion-list>
   </ion-content>
 </ion-menu>
