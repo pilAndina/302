@@ -7,12 +7,71 @@
 <ion-header>
 
   <ion-navbar>
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>list</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+  <ion-list>
+    <ion-item-sliding #item (ionDrag)="logDrag(item)">
+      <ion-item>
+        <ion-thumbnail item-left>
+          <img src="http://www.nicobytes.com/images/photo.jpg" alt="">
+        </ion-thumbnail>
+        <h1>Nicoañs</h1>
+        <p>nicolas@nicobytes</p>
+      </ion-item>
+      <ion-item-options>
+        <button ion-button>
+          <ion-icon name="trash"></ion-icon>
+          Eliminar
+        </button>
+        <button ion-button color="danger">Editar</button>
+        <button ion-button color="facebook">Ver</button>
+      </ion-item-options>
+    </ion-item-sliding>
+    
+    <ion-item>
+      <ion-thumbnail item-left>
+        <img src="http://www.nicobytes.com/images/photo.jpg" alt="">
+      </ion-thumbnail>
+      <h1>Nicoañs</h1>
+      <p>nicolas@nicobytes</p>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail item-left>
+        <img src="http://www.nicobytes.com/images/photo.jpg" alt="">
+      </ion-thumbnail>
+      <h1>Nicoañs</h1>
+      <p>nicolas@nicobytes</p>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail item-left>
+        <img src="http://www.nicobytes.com/images/photo.jpg" alt="">
+      </ion-thumbnail>
+      <h1>Nicoañs</h1>
+      <p>nicolas@nicobytes</p>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail item-left>
+        <img src="http://www.nicobytes.com/images/photo.jpg" alt="">
+      </ion-thumbnail>
+      <h1>Nicoañs</h1>
+      <p>nicolas@nicobytes</p>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail item-left>
+        <img src="http://www.nicobytes.com/images/photo.jpg" alt="">
+      </ion-thumbnail>
+      <h1>Nicoañs</h1>
+      <p>nicolas@nicobytes</p>
+    </ion-item>
+  </ion-list>
 </ion-content>

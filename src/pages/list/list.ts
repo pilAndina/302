@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ItemSliding } from 'ionic-angular';
 
 /**
  * Generated class for the ListPage page.
@@ -19,6 +19,13 @@ export class ListPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ListPage');
+  }
+
+  logDrag(item: ItemSliding){
+    let percent = item.getSlidingPercent();
+    if (Math.abs(percent) > 1) {
+      console.log('archivar');
+    }
   }
 
 }
