@@ -9,7 +9,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 export class MyApp {
 
   @ViewChild(Nav) navMaster: Nav;
-  rootPage: any = 'TutorialPage';
+  rootPage: any = 'HomePage';
 
   constructor(
     platform: Platform,
@@ -27,17 +27,10 @@ export class MyApp {
     });
   }
 
-  goToUsersPage(){
-    this.navMaster.setRoot('UsersPage');
+  goToPage(page: string){
+    this.navMaster.setRoot(page);
   }
 
-  goToTabsPage(){
-    this.navMaster.setRoot('TabsPage');
-  }
-
-  goToHomePage(){
-    this.navMaster.setRoot('HomePage');
-  }
 
   logout(){
     //clear session

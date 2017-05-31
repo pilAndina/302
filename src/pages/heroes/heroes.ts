@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 
 /**
  * Generated class for the HeroesPage page.
@@ -14,7 +14,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class HeroesPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private viewCtrl: ViewController
+  ) {
   }
 
   ionViewDidLoad() {
@@ -26,6 +30,10 @@ export class HeroesPage {
       console.log('todo salio ok');
       this.navCtrl.pop();
     },5000);
+  }
+
+  close(){
+    this.viewCtrl.dismiss();
   }
 
 }

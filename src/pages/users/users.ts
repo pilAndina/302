@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, LoadingController } from 'ionic-angular';
 
 import { UsersProvider } from '../../providers/users/users';
 
@@ -16,14 +16,24 @@ export class UsersPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private usersProvider: UsersProvider,
-    private menuCtrl: MenuController
+    private menuCtrl: MenuController,
+    private loadCtrl: LoadingController
   ) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Users');
+    let load = this.loadCtrl.create({
+      duration: 40000,
+      content: 'Solicitando usuarios'
+    });
+    load.present();
     this.usersProvider.getUsers()
     .then(data=>{
+      load.dismiss();
       this.users = data.results;
+    })
+    .catch(error=>{
+      load.dismiss();
+      console.error(error);
     })
   }
 

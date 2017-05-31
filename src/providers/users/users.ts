@@ -11,7 +11,7 @@ export class UsersProvider {
   }
 
   getUsers(){
-    return this.http.get('https://randomuser.me/api/?results=100')
+    return this.http.get('https://randomuser.me/api/?results=50')
     .map(response => response.json())
     .toPromise();
   }
