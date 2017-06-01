@@ -23,6 +23,7 @@ export class FormsPage {
       name: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(10)]],
       lastname: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
       password: ['', [Validators.required]],
+      confirmPassword: ['', [Validators.required]],
       age: ['', [Validators.required, MyValidators.isOld]],
       phone: [''],
       date: [''],
@@ -37,6 +38,8 @@ export class FormsPage {
       notifications: [true],
       mail: [true],
       sms: [false],
+    }, {
+      validator: MyValidators.matchPassword
     });
   }
 

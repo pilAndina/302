@@ -45,6 +45,16 @@
         <p *ngIf="registerForm.get('password').hasError('required')" color="danger" ion-text>Campo requerido</p>
       </ion-item>
       <ion-item>
+        <ion-label floating>Confirm Password:</ion-label>
+        <ion-input type="password" formControlName="confirmPassword"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="registerForm.get('confirmPassword').errors && registerForm.get('confirmPassword').dirty">
+        <p *ngIf="registerForm.get('confirmPassword').hasError('required')" color="danger" ion-text>Campo requerido</p>
+      </ion-item>
+      <ion-item  *ngIf="registerForm.errors && registerForm.get('confirmPassword').dirty">
+        <p ion-text color="danger">La contraseña no es igual</p>
+      </ion-item>
+      <ion-item>
         <ion-label floating>Age:</ion-label>
         <ion-input type="number" formControlName="age"></ion-input>
       </ion-item>
