@@ -9,40 +9,60 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <form>
+<ion-content>
+  <form [formGroup]="registerForm" (ngSubmit)="saveData()">
     <ion-list>
       <ion-item>
         <ion-label floating>Correo:</ion-label>
-        <ion-input type="email"></ion-input>
+        <ion-input type="email" formControlName="email"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="registerForm.get('email').errors && registerForm.get('email').dirty">
+        <p *ngIf="registerForm.get('email').hasError('required')" color="danger" ion-text>Campo requerido</p>
+        <p *ngIf="registerForm.get('email').hasError('email')" color="danger" ion-text>Esto no es un correo</p>
       </ion-item>
       <ion-item>
         <ion-label floating>Nombre:</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" formControlName="name"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="registerForm.get('name').errors && registerForm.get('name').dirty">
+        <p *ngIf="registerForm.get('name').hasError('required')" color="danger" ion-text>Campo requerido</p>
+        <p *ngIf="registerForm.get('name').hasError('minlength')" color="danger" ion-text>El campo debe tener minimo 5 cjdshf</p>
+        <p *ngIf="registerForm.get('name').hasError('maxlength')" color="danger" ion-text>El campo debe tener maximo 10 cjdshf</p>
       </ion-item>
       <ion-item>
         <ion-label floating>Apellido:</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" formControlName="lastname"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="registerForm.get('lastname').errors && registerForm.get('lastname').dirty">
+        <p *ngIf="registerForm.get('lastname').hasError('required')" color="danger" ion-text>Campo requerido</p>
+        <p *ngIf="registerForm.get('lastname').hasError('pattern')" color="danger" ion-text>Campo invalido</p>
       </ion-item>
       <ion-item>
         <ion-label floating>Password:</ion-label>
-        <ion-input type="password"></ion-input>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="registerForm.get('password').errors && registerForm.get('password').dirty">
+        <p *ngIf="registerForm.get('password').hasError('required')" color="danger" ion-text>Campo requerido</p>
       </ion-item>
       <ion-item>
         <ion-label floating>Age:</ion-label>
-        <ion-input type="number"></ion-input>
+        <ion-input type="number" formControlName="age"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="registerForm.get('age').errors && registerForm.get('age').dirty">
+        <p *ngIf="registerForm.get('age').hasError('required')" color="danger" ion-text>Campo requerido</p>
+        <p *ngIf="registerForm.get('age').hasError('isold')" color="danger" ion-text>Vuelve cuando seas mayor</p>
       </ion-item>
       <ion-item>
         <ion-label floating>Phone:</ion-label>
-        <ion-input type="tel"></ion-input>
+        <ion-input type="tel" formControlName="phone"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>Fecha:</ion-label>
-        <ion-input type="date"></ion-input>
+        <ion-input type="date" formControlName="date"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Lenguajes</ion-label>
-        <ion-select interface="alert">
+        <ion-select interface="alert" formControlName="lang">
           <ion-option>Python</ion-option>
           <ion-option>Ruby</ion-option>
           <ion-option>Js</ion-option>
@@ -53,7 +73,7 @@
       </ion-item>
       <ion-item>
         <ion-label>Lenguajes</ion-label>
-        <ion-select multiple="true">
+        <ion-select multiple="true" formControlName="lang2">
           <ion-option>Python</ion-option>
           <ion-option>Ruby</ion-option>
           <ion-option>Js</ion-option>
@@ -64,11 +84,11 @@
       </ion-item>
       <ion-item>
         <ion-label>Fecha</ion-label>
-        <ion-datetime></ion-datetime>
+        <ion-datetime formControlName="date2"></ion-datetime>
       </ion-item>
       <ion-item>
         <ion-label>Volumen</ion-label>
-        <ion-range min="-100" max="100" pin >
+        <ion-range min="-100" max="100" pin formControlName="volume">
           <ion-icon range-left name="volume-down"></ion-icon>
           <ion-icon range-right name="volume-up"></ion-icon>
         </ion-range>
@@ -80,32 +100,32 @@
       </ion-list-header>
       <ion-item>
         <ion-label>Terror</ion-label>
-        <ion-checkbox color="danger"></ion-checkbox>
+        <ion-checkbox formControlName="horror" color="danger"></ion-checkbox>
       </ion-item>
       <ion-item>
         <ion-label>Drama</ion-label>
-        <ion-checkbox color="facebook"></ion-checkbox>
+        <ion-checkbox color="facebook" formControlName="drama"></ion-checkbox>
       </ion-item>
       <ion-item>
         <ion-label>Accion</ion-label>
-        <ion-checkbox></ion-checkbox>
+        <ion-checkbox formControlName="accion"></ion-checkbox>
       </ion-item>
     </ion-list>
-    <ion-list radio-group>
+    <ion-list radio-group formControlName="gender">
       <ion-list-header>
         Genero
       </ion-list-header>
       <ion-item>
         <ion-label>Masculino</ion-label>
-        <ion-radio color="danger"></ion-radio>
+        <ion-radio value="M" color="danger"></ion-radio>
       </ion-item>
       <ion-item>
         <ion-label>Femenimo</ion-label>
-        <ion-radio color="facebook"></ion-radio>
+        <ion-radio value="F" color="facebook"></ion-radio>
       </ion-item>
       <ion-item>
         <ion-label>Otro</ion-label>
-        <ion-radio></ion-radio>
+        <ion-radio value="O"></ion-radio>
       </ion-item>
     </ion-list>
     <ion-list>
@@ -114,16 +134,20 @@
       </ion-list-header>
       <ion-item>
         <ion-label>Notificaciones</ion-label>
-        <ion-toggle></ion-toggle>
+        <ion-toggle formControlName="notifications"></ion-toggle>
       </ion-item>
       <ion-item>
         <ion-label>Correos</ion-label>
-        <ion-toggle></ion-toggle>
+        <ion-toggle formControlName="mail"></ion-toggle>
       </ion-item>
       <ion-item>
         <ion-label>sms</ion-label>
-        <ion-toggle></ion-toggle>
+        <ion-toggle formControlName="sms"></ion-toggle>
       </ion-item>
     </ion-list>
+    <div padding>
+      <button ion-button block type="submit" [disabled]="registerForm.invalid">Guardar</button>
+      <button ion-button block type="button">Capturar foto</button>
+    </div>
   </form>
 </ion-content>
