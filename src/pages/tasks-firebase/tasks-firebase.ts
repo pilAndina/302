@@ -1,32 +1,28 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 
-import { TasksSqliteProvider } from '../../providers/tasks-sqlite/tasks-sqlite';
+import { TasksFirebaseProvider } from '../../providers/tasks-firebase/tasks-firebase';
 
 @IonicPage()
 @Component({
-  selector: 'page-tasks-undone',
-  templateUrl: 'tasks-undone.html',
+  selector: 'page-tasks-firebase',
+  templateUrl: 'tasks-firebase.html',
 })
-export class TasksUndonePage {
+export class TasksFirebasePage {
 
   tasks: any[] = [];
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    private tasksProvider: TasksSqliteProvider,
+    private tasksProvider: TasksFirebaseProvider,
     private alertCtrl: AlertController
   ) {}
 
   ionViewDidLoad() {
     this.tasksProvider.getAll()
-    .then(tasks=>{
-      console.log(tasks);
+    .subscribe(tasks =>{
       this.tasks = tasks;
-    })
-    .catch(error =>{
-      console.error( error );
     });
   }
 
@@ -81,9 +77,8 @@ export class TasksUndonePage {
         {
           text: 'Guardar',
           handler: (data)=>{
-            let updateTask = Object.assign({}, taskOld);
-            updateTask.title = data.title;
-            this.updateTask(updateTask, index);
+            taskOld.title = data.title;
+            this.updateTask(taskOld);
           }
         }
       ]
@@ -97,35 +92,15 @@ export class TasksUndonePage {
       completed: false,
       user: 1
     }
-    this.tasksProvider.create(newTask)
-    .then((data) =>{
-      this.tasks.unshift(newTask);
-      console.log(data.rows.item(data.insertId));
-    })
-    .catch(error =>{
-      console.error(error);
-    })
+    this.tasksProvider.create(newTask);
   }
 
-  private updateTask(task, index){
-    console.log(index);
-    this.tasksProvider.update(task)
-    .then(task =>{
-      this.tasks[index] = task;
-    })
-    .catch(error =>{
-      console.error(error);
-    })
+  private updateTask(task){
+    this.tasksProvider.update(task);
   }
 
   deleteTask( task, index){
-    this.tasksProvider.delete(task.id)
-    .then(data =>{
-      this.tasks.splice(index, 1);
-    })
-    .catch(error =>{
-      console
-    })
+    this.tasksProvider.delete(task.$key);
   }
 
 }
