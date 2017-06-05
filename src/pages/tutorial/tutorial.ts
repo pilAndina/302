@@ -25,4 +25,8 @@ export class TutorialPage {
     this.navCtrl.push('LoginPage');
   }
 
+  goToMapPage(){
+    this.navCtrl.push('MapPage');
+  }
+
 }
