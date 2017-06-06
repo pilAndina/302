@@ -77,7 +77,11 @@ export class MyApp {
 
   private listerPush(){
     this.push.rx.notification()
-    .subscribe(msg =>{
+    .subscribe((msg:any) =>{
+      //cope
+      if(msg.page){
+        
+      }
       alert(msg.title + ': ' + msg.text);
     })
   }
