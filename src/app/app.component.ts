@@ -6,6 +6,11 @@ import { SQLite } from '@ionic-native/sqlite';
 
 import { TasksSqliteProvider } from '../providers/tasks-sqlite/tasks-sqlite';
 
+import {
+  Push,
+  PushToken
+} from '@ionic/cloud-angular';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -20,7 +25,8 @@ export class MyApp {
     splashScreen: SplashScreen,
     private menuCtrl: MenuController,
     private sqlite: SQLite,
-    private tasksSqliteProvider: TasksSqliteProvider
+    private tasksSqliteProvider: TasksSqliteProvider,
+    private push: Push
   ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -29,7 +35,9 @@ export class MyApp {
       splashScreen.hide();
       this.createDatabase();
       this.menuCtrl.enable(false, 'menuAdmin');
-      this.menuCtrl.enable(false, 'menuSales');
+      //this.menuCtrl.enable(false, 'menuSales');
+      this.registerToken();
+      this.listerPush();  
     });
   }
 
@@ -55,6 +63,22 @@ export class MyApp {
     })
     .catch(error =>{
       console.log(error);
+    })
+  }
+
+  private registerToken(){
+    this.push.register()
+    .then((token: PushToken)=>{
+      this.push.saveToken(token,{
+        ignore_user: true
+      });
+    })
+  }
+
+  private listerPush(){
+    this.push.rx.notification()
+    .subscribe(msg =>{
+      alert(msg.title + ': ' + msg.text);
     })
   }
 }
